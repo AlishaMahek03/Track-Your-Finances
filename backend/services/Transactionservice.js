@@ -22,3 +22,4 @@ module.exports.createTransaction = async ({ name_transaction, amount, date, type
 
     return await transaction.save();
 }
+
