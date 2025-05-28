@@ -47,7 +47,7 @@ const Sidepanel = () => {
         </div>
         <div className="flex items-center justify-center ml-2 ">
           <h2 className="text-2xl flex items-center gap-2 cursor-pointer hover:text-gray-300">
-           <i class="ri-logout-box-fill"></i>
+           <i className="ri-logout-box-fill"></i>
            LogOut
           </h2>
          
