@@ -1,7 +1,7 @@
 const transactionmodel = require('../models/Transactionsmodel');
 const mongoose = require('mongoose');
 
-module.exports.createTransaction = async ({ name_transaction, amount, date, type, category, description, source }) => {
+module.exports.createTransaction = async ({ name_transaction, amount, date, type, category, description, source, user }) => {
     if (!name_transaction || !amount || !category) {
         throw new Error('Name, amount, and category are required fields');
     }
@@ -17,7 +17,8 @@ module.exports.createTransaction = async ({ name_transaction, amount, date, type
         type,
         category,
         description,
-        source
+        source,
+        user
     });
 
     return await transaction.save();

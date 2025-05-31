@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const {body, validationResult} = require('express-validator');
 const usercontroller = require('../controllers/user.controller');
+const authmiddleware = require('../middlewares/auth.middleware');
 
 
 router.post('/signup',
@@ -15,13 +16,14 @@ router.post('/login',
   body('password').notEmpty().withMessage('Password cannot be empty'), usercontroller.login
 );
 
-router.post('/transactions',
+router.post('/transactions',authmiddleware.authTransaction,
   body('name_transaction').isLength({min: 1}).withMessage('Transaction name is required'),
   body('amount').isNumeric().withMessage('Amount must be a number'),
   body('category').isLength({min: 1}).withMessage('Category is required'),
   usercontroller.createTransaction
 );
 
+router.get('/transactions_get',authmiddleware.authTransaction, usercontroller.getTransactions);
 
 
 router.get('/backend', (req, res) => {

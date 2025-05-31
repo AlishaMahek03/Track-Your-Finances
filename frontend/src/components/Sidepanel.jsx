@@ -19,7 +19,7 @@ const Sidepanel = () => {
     navigate('/home');
   }
   return (
-    <div className="w-[20%] panel-home h-screen bg-black text-white flex flex-col items-start justify-start p-5">
+    <div className="w-[21%] panel-home h-screen bg-black text-white flex flex-col items-start justify-start p-5">
         <div className="profile">
           <h2 className="text-2xl flex gap-2  items-center"><i className="ri-user-3-line text-5xl"></i>Hey User!</h2>
           <p className="p-2 text-2xl mt-5">Howz Everything?</p>

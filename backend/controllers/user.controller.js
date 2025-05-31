@@ -3,6 +3,7 @@ const { validationResult } = require('express-validator');
 const userservice = require('../services/user.service');
 const Usermodel = require('../models/usermodel');
 const transactionservice = require('../services/Transactionservice');
+const Transaction = require('../models/Transactionsmodel');
 
 
 module.exports.signup = async (req, res) => {
@@ -65,6 +66,7 @@ module.exports.createTransaction = async (req, res) => {
     const { name_transaction, amount, date, type, category, description, source } = req.body;
 
     try {
+        console.log(req.user);
         const transaction = await transactionservice.createTransaction({
             name_transaction,
             amount,
@@ -72,7 +74,8 @@ module.exports.createTransaction = async (req, res) => {
             type,
             category,
             description,
-            source
+            source,
+            user: req.user.id // Assuming req.user is set by auth middleware
         });
         res.status(201).json(transaction);
     } catch (error) {
@@ -80,5 +83,14 @@ module.exports.createTransaction = async (req, res) => {
     }
 }
 
+module.exports.getTransactions = async (req, res) => {
+    try {
+        // Assuming your Transaction model has a user field referencing the user
+        const transactions = await Transaction.find({ user: req.user.id, type:"expense" }).sort({ date: -1 });
+        res.json({ transactions });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
 
 
