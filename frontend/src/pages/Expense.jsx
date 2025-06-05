@@ -26,7 +26,7 @@ const Expense = () => {
   const fetchRecentTransactions = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/userroutes/transactions_get",
+        import.meta.env.VITE_BASE_URL+"/userroutes/transactions_get",
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`, // Assuming you have a token stored in localStorage
@@ -86,7 +86,7 @@ const Expense = () => {
     // Send user_transaction to your backend API
     try {
       const response = await axios.post(
-        "http://localhost:3000/userroutes/transactions",
+       import.meta.env.VITE_BASE_URL+ "/userroutes/transactions",
         user_transaction,
         {
           headers: {

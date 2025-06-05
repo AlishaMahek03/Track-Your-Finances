@@ -22,6 +22,11 @@ const Sidepanel = () => {
   const handleDashboardClick = () => {
     navigate('/home');
   }
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    navigate('/');
+  };
   return (
     <div className="w-[21%] panel-home h-screen bg-black text-white flex flex-col items-start justify-start p-5">
         <div className="profile">
@@ -47,7 +52,7 @@ const Sidepanel = () => {
           </nav>
         </div>
         <div className="flex items-center justify-center ml-2 ">
-          <h2 className="text-2xl flex items-center gap-2 cursor-pointer hover:text-gray-300">
+          <h2 onClick={handleLogout} className="text-2xl flex items-center gap-2 cursor-pointer hover:text-gray-300">
            <i className="ri-logout-box-fill"></i>
            LogOut
           </h2>
