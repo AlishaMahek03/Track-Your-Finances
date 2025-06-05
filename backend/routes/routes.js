@@ -25,6 +25,14 @@ router.post('/transactions',authmiddleware.authTransaction,
 
 router.get('/transactions_get',authmiddleware.authTransaction, usercontroller.getTransactions);
 
+router.get('/transaction_income', authmiddleware.authTransaction, usercontroller.getIncome);
+
+
+router.get('/transaction_all', authmiddleware.authTransaction, usercontroller.getAllTransactions);
+
+router.get('/transaction_summary', authmiddleware.authTransaction, usercontroller.getTransactionSummary);
+
+
 
 router.get('/backend', (req, res) => {
   res.status(200).json({

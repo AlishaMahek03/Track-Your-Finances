@@ -93,4 +93,43 @@ module.exports.getTransactions = async (req, res) => {
     }
 };
 
+module.exports.getIncome = async (req, res) => {
+    try {
+        // Assuming your Transaction model has a user field referencing the user
+        const transactions = await Transaction.find({ user: req.user.id, type:"income" }).sort({ date: -1 });
+        res.json({ transactions });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
 
+module.exports.getAllTransactions = async (req, res) => {
+    try {
+        // Assuming your Transaction model has a user field referencing the user
+        const transactions = await Transaction.find({ user: req.user.id }).sort({ date: -1 });
+        res.json({ transactions });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
+
+module.exports.getTransactionSummary = async (req, res) => {
+    try {
+        // Example controller logic
+const transactions = await Transaction.find({ user: req.user.id });
+
+let income = 0;
+let expense = 0;
+let subscription = 0;
+
+transactions.forEach(tx => {
+  if (tx.type === "income") income += tx.amount;
+  if (tx.type === "expense") expense += tx.amount;
+  if (tx.category === "Subscriptions") subscription += tx.amount;
+});
+
+res.json({ income, expense, subscription });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
