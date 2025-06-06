@@ -6,9 +6,15 @@ const  cors = require('cors');
 
 const routes = require('./routes/routes');
 
+const allowedOrigin = 'https://track-your-finances-1.onrender.com';
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: allowedOrigin,
+    credentials: true, // if you use cookies or authentication
+  })
+);
 
 app.use('/userroutes', routes);
 
