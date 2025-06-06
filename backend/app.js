@@ -10,7 +10,9 @@ const allowedOrigin = ['https://track-your-finances-1.onrender.com', 'http://loc
 
 app.use(express.json());
 app.use(
-  cors()
+  cors({
+    origin: allowedOrigin
+  })
 );
 
 app.use('/userroutes', routes);
