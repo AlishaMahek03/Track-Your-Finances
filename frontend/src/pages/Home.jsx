@@ -13,7 +13,7 @@ const Home = () => {
   const fetchTransactionSummary = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/userroutes/transaction_summary",
+        import.meta.env.VITE_BASE_URL+"/userroutes/transaction_summary",
         {
           headers: {  
             Authorization: `Bearer ${localStorage.getItem("token")}`, // Assuming you have a token stored in localStorage
@@ -38,7 +38,7 @@ const Home = () => {
   const fetchRecentTransactions = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/userroutes/transaction_all",
+        import.meta.env.VITE_BASE_URL+"/userroutes/transaction_all",
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`, // Assuming you have a token stored in localStorage

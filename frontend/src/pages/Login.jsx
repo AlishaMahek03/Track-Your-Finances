@@ -11,7 +11,7 @@ const Login = () => {
   const handlesubmit = async (e) => {
     e.preventDefault();
     try{
-      const response = await axios.post('http://localhost:3000/userroutes/login', {
+      const response = await axios.post(import.meta.env.VITE_BASE_URL+'/userroutes/login', {
         email: email,
         password: password
       })
